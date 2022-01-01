@@ -18,7 +18,19 @@ router.get('/clientes', (req, res, next) => {
 
 /* GET clientes by ID. */
 router.get('/clientes/:idCliente', (req, res, next) => {
+   const id = req.params.idCliente0;
 
+   models.clientes.findByPk(id)
+   .then(data => {
+      if (data) {
+         res.send(data);
+      } else {
+         res.status(404).send({message: `No se encontró el cliente con el id=${id}.`});
+      }
+   })
+   .catch(err => {
+      res.status(500).send({message: "Error retrieving Tutorial with id=" + id});
+   });
 });
 
 /* POST clientes */
