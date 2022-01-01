@@ -18,7 +18,7 @@ router.get('/clientes', (req, res, next) => {
 
 /* GET clientes by ID. */
 router.get('/clientes/:idCliente', (req, res, next) => {
-   const id = req.params.idCliente0;
+   const id = req.params.idCliente;
 
    models.clientes.findByPk(id)
    .then(data => {
