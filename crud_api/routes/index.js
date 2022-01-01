@@ -29,13 +29,34 @@ router.get('/clientes/:idCliente', (req, res, next) => {
       }
    })
    .catch(err => {
-      res.status(500).send({message: "Error retrieving Tutorial with id=" + id});
+      res.status(500).send({message: "No se encontró el cliente con el id=" + id});
    });
 });
 
 /* POST clientes */
 router.post('/clientes', (req, res, next) => {
-
+   // Validar que no esté vacío
+   if (!req.body.nombre) {
+      res.status(400).send({message: "Contenido vacío!"});
+      return;
+   }
+  
+   // Crear un cliente
+   const cliente = {
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      fechaNacimiento: req.body.fechaNacimiento,
+      estado: req.body.estado ? req.body.estado : false
+   };
+  
+   // Guardar cliente
+   models.clientes.create(cliente)
+   .then(data => {
+      res.send(data);
+   })
+   .catch(err => {
+      res.status(500).send({message: err.message || "Error al crear nuevo cliente"});
+   });
 });
 
 /* PUT clientes */
