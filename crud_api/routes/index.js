@@ -60,7 +60,7 @@ router.post('/clientes', (req, res, next) => {
 });
 
 /* PUT clientes */
-router.put('/clientes', (req, res, next) => {
+router.put('/clientes/:id', (req, res, next) => {
    const id = req.params.id;
 
    models.clientes.update(req.body, {
@@ -79,7 +79,7 @@ router.put('/clientes', (req, res, next) => {
 });
 
 /* DELETE clientes */
-router.delete('/clientes', (req, res, next) => {
+router.delete('/clientes/:id', (req, res, next) => {
    const id = req.params.id;
 
    models.clientes.destroy({
