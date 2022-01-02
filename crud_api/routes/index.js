@@ -61,7 +61,21 @@ router.post('/clientes', (req, res, next) => {
 
 /* PUT clientes */
 router.put('/clientes', (req, res, next) => {
+   const id = req.params.id;
 
+   models.clientes.update(req.body, {
+      where: { id: id }
+   })
+   .then(num => {
+      if (num == 1) {
+         res.send({message: "Cliente actualizado exitosamente."});
+      } else {
+         res.send({message: `Fallo al actualizar cliente con id=${id}.`});
+      }
+   })
+   .catch(err => {
+      res.status(500).send({message: "Error al actualizar cliente con id=" + id});
+   });
 });
 
 /* DELETE clientes */
