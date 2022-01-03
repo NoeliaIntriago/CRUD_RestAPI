@@ -60,7 +60,7 @@ router.post('/clientes', (req, res, next) => {
 });
 
 /* PUT clientes */
-router.put('/clientes/:id', (req, res, next) => {
+router.put('/clientes', (req, res, next) => {
    const id = req.params.id;
 
    models.clientes.update(req.body, {
@@ -68,6 +68,11 @@ router.put('/clientes/:id', (req, res, next) => {
    })
    .then(num => {
       if (num == 1) {
+         models.clientes.nombre = req.body.nombre ? req.body.nombre : models.clientes.nombre;
+			models.clientes.apellido = req.body.apellido ? req.body.apellido : models.clientes.apellido;
+			models.clientes.fechaNacimiento = req.body.fechaNacimiento ? req.body.fechaNacimiento : models.clientes.fechaNacimiento;
+			models.clientes.estado = req.body.estado ? req.body.estado : models.clientes.estado;
+			
          res.send({message: "Cliente actualizado exitosamente."});
       } else {
          res.send({message: `Fallo al actualizar cliente con id=${id}.`});
@@ -79,7 +84,7 @@ router.put('/clientes/:id', (req, res, next) => {
 });
 
 /* DELETE clientes */
-router.delete('/clientes/:id', (req, res, next) => {
+router.delete('/clientes', (req, res, next) => {
    const id = req.params.id;
 
    models.clientes.destroy({
