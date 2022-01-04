@@ -17,8 +17,8 @@ const cargarClientes = () => {
 	                <td class="text-center align-middle"><i class="fa fa-fw text-secondary cursor-pointer fa-toggle-${activo}"></i></td>
 	                <td class="text-center align-middle">
 	                  <div class="btn-group align-top">
-	                    <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
-	                    <button class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></button>
+	                    <button id="update_client${cliente.id}" class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal">Edit</button>
+	                    <button id="delete_client${cliente.id}" class="btn btn-sm btn-outline-secondary badge" type="button"><i class="fa fa-trash"></i></button>
 	                  </div>
 	                </td>
 	              </tr>
@@ -37,7 +37,7 @@ const crearCliente = () => {
 			nombre: document.getElementById("name_input").value,
 			apellido: document.getElementById("lastname_input").value,
 			fechaNacimiento: document.getElementById("dob_input").value,
-			estado: true
+			estado: document.getElementById("notifications-blog").checked
 		}
 		fetch("http://localhost:3001/api/clientes", {
 			method: 'post',

@@ -35,12 +35,6 @@ router.get('/clientes/:idCliente', (req, res, next) => {
 
 /* POST clientes */
 router.post('/clientes', (req, res, next) => {
-   console.log(req.body);
-   for(let pair in req.body){
-      console.log(pair);
-      console.log(pair[0]+': '+pair[1]);
-   }
-
    // Validar que no esté vacío
    if (!req.body) {
       res.status(400).send({message: "Contenido vacío!"});
