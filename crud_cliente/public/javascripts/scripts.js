@@ -29,8 +29,31 @@ const cargarClientes = () => {
 	})
 }
 
+const crearCliente = () => {
+	const form = document.getElementById("newClientForm");
+	form.addEventListener('submit', function (e){
+		e.preventDefault();
+		const formData = new FormData();
+		formData.append("nombre", document.getElementById("name_input").value);
+		formData.append("apellido", document.getElementById("lastname_input").value);
+		formData.append("fechaNacimiento", document.getElementById("dob_input").value);
+		console.log(formData);
+		fetch("http://localhost:3001/api/clientes", {
+			method: 'post',
+			body: JSON.stringify(formData),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+		.then(response => response.json())
+		.catch(function(error) {
+			console.log('Hubo un problema con la petición Fetch: ' + error.message);
+		});
+	});
+}
+
 window.onload = () => {
 	
-	cargarClientes()
-
+	cargarClientes();
+	crearCliente();
 }

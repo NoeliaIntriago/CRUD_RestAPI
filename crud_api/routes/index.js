@@ -35,17 +35,21 @@ router.get('/clientes/:idCliente', (req, res, next) => {
 
 /* POST clientes */
 router.post('/clientes', (req, res, next) => {
+
+   console.log("req.body:"+req.body);
+   console.log(req.body);
+
    // Validar que no esté vacío
-   if (!req.body.nombre) {
+   if (!req.body) {
       res.status(400).send({message: "Contenido vacío!"});
       return;
    }
   
    // Crear un cliente
    const cliente = {
-      nombre: req.body.nombre,
-      apellido: req.body.apellido,
-      fechaNacimiento: req.body.fechaNacimiento,
+      nombre: req.body.name,
+      apellido: req.body.lastname,
+      fechaNacimiento: req.body.date,
       estado: req.body.estado ? req.body.estado : false
    };
   
