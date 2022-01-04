@@ -33,11 +33,12 @@ const crearCliente = () => {
 	const form = document.getElementById("newClientForm");
 	form.addEventListener('submit', function (e){
 		e.preventDefault();
-		const formData = new FormData();
-		formData.append("nombre", document.getElementById("name_input").value);
-		formData.append("apellido", document.getElementById("lastname_input").value);
-		formData.append("fechaNacimiento", document.getElementById("dob_input").value);
-		console.log(formData);
+		var formData = {
+			nombre: document.getElementById("name_input").value,
+			apellido: document.getElementById("lastname_input").value,
+			fechaNacimiento: document.getElementById("dob_input").value,
+			estado: true
+		}
 		fetch("http://localhost:3001/api/clientes", {
 			method: 'post',
 			body: JSON.stringify(formData),
@@ -45,10 +46,13 @@ const crearCliente = () => {
 				"Content-Type": "application/json"
 			}
 		})
-		.then(response => response.json())
+		.then(response => {
+			response.json()
+		})
 		.catch(function(error) {
 			console.log('Hubo un problema con la petición Fetch: ' + error.message);
 		});
+		
 	});
 }
 

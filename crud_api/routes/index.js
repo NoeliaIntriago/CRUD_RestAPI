@@ -35,9 +35,11 @@ router.get('/clientes/:idCliente', (req, res, next) => {
 
 /* POST clientes */
 router.post('/clientes', (req, res, next) => {
-
-   console.log("req.body:"+req.body);
    console.log(req.body);
+   for(let pair in req.body){
+      console.log(pair);
+      console.log(pair[0]+': '+pair[1]);
+   }
 
    // Validar que no esté vacío
    if (!req.body) {
@@ -47,9 +49,9 @@ router.post('/clientes', (req, res, next) => {
   
    // Crear un cliente
    const cliente = {
-      nombre: req.body.name,
-      apellido: req.body.lastname,
-      fechaNacimiento: req.body.date,
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      fechaNacimiento: req.body.fechaNacimiento,
       estado: req.body.estado ? req.body.estado : false
    };
   
