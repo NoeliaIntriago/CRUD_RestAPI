@@ -17,8 +17,8 @@ const cargarClientes = () => {
 	                <td class="text-center align-middle"><i class="fa fa-fw text-secondary cursor-pointer fa-toggle-${activo}"></i></td>
 	                <td class="text-center align-middle">
 	                  <div class="btn-group align-top">
-	                    <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal" onclick="actualizarCliente('${cliente}')">Edit</button>
-	                    <button class="btn btn-sm btn-outline-secondary badge" type="button" onclick="eliminarCliente('${cliente}')"><i class="fa fa-trash"></i></button>
+	                    <button class="btn btn-sm btn-outline-secondary badge" type="button" data-toggle="modal" data-target="#user-form-modal" onclick="actualizarCliente(${cliente.id})">Edit</button>
+	                    <button class="btn btn-sm btn-outline-secondary badge" type="button" onclick="eliminarCliente(${cliente.id})"><i class="fa fa-trash"></i></button>
 	                  </div>
 	                </td>
 	              </tr>
@@ -58,10 +58,12 @@ const crearCliente = () => {
 
 const actualizarCliente = (cliente) => {
 	console.log('Actualizando cliente');
+	console.log(cliente);
 }
 
 const eliminarCliente = (cliente) => {
-	console.log('Eliminando cliente')
+	console.log('Eliminando cliente');
+	console.log(cliente);
 }
 
 window.onload = () => {
