@@ -60,8 +60,8 @@ router.post('/clientes', (req, res, next) => {
 });
 
 /* PUT clientes */
-router.put('/clientes', (req, res, next) => {
-   const id = req.params.id;
+router.put('/clientes/:idCliente', (req, res, next) => {
+   const id = req.params.idCliente;
 
    models.clientes.update(req.body, {
       where: { id: id }

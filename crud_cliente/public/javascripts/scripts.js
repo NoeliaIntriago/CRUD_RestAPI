@@ -72,22 +72,12 @@ const actualizarCliente = (cliente) => {
 }
 
 const eliminarCliente = (idCliente) => {
-	console.log('Eliminando cliente');
-	console.log(idCliente);
-	
-	var formData = {
-		nombre: document.getElementById("name_input").value,
-		apellido: document.getElementById("lastname_input").value,
-		fechaNacimiento: document.getElementById("dob_input").value,
-		estado: document.getElementById("notifications-blog").checked
-	}
-
 	let url = "http://localhost:3001/api/clientes/"+idCliente
 	fetch(url, {
 		method: "delete"
 	})
 	.then(response => {
-		response.text();
+		response.json();
 	})
 	.catch(function(error) {
 		console.log("Hubo un problema con la petición Fetch: " + error.message);
