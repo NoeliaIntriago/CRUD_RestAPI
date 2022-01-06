@@ -59,16 +59,30 @@ const crearCliente = () => {
 const actualizarCliente = (cliente) => {
 	console.log('Actualizando cliente');
 	console.log(cliente);
-	let url = "http://localhost:3001/api/clientes"+cliente
-	fetch(url, {
-		method: "put"
-	})
-	.then(response => {
-		response.json()
-	})
-	.catch(function(error) {
-		console.log("Hubo un problema con la petición Fetch: " + error.message);
-	}) 
+	const form = document.getElementById("newClientForm");
+	form.addEventListener('submit', function (e){
+		e.preventDefault();
+		var formData = {
+			nombre: document.getElementById("name_input").value,
+			apellido: document.getElementById("lastname_input").value,
+			fechaNacimiento: document.getElementById("dob_input").value,
+			estado: document.getElementById("notifications-blog").checked
+		}
+		let url = "http://localhost:3001/api/clientes/"+cliente
+		fetch(url, {
+			method: "put",
+			body: JSON.stringify(formData),
+			headers: {
+				"Content-Type": "application/json"
+			}
+		})
+		.then(response => {
+			response.json()
+		})
+		.catch(function(error) {
+			console.log("Hubo un problema con la petición Fetch: " + error.message);
+		}) 
+	});
 }
 
 const eliminarCliente = (idCliente) => {
