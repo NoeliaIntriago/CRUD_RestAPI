@@ -90,7 +90,6 @@ const eliminarCliente = (idCliente) => {
 		response.json();
 	})
 	.then(data => {
-		console.log("Hola");
 		location.reload();
 	})
 	.catch(function(error) {
