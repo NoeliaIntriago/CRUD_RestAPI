@@ -84,21 +84,21 @@ router.put('/clientes', (req, res, next) => {
 });
 
 /* DELETE clientes */
-router.delete('/clientes', (req, res, next) => {
-   const id = req.params.id;
+router.delete('/clientes/:idCliente', (req, res, next) => {
+   const id = req.params.idCliente;
 
    models.clientes.destroy({
     where: { id: id }
    })
    .then(num => {
       if (num == 1) {
-         res.send({message: "Tutorial was deleted successfully!"});
+         res.send({message: "Cliente fue eliminado exitosamente!"});
       } else {
-         res.send({message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`});
+         res.send({message: `No se pudo eliminar cliente con id=${id}.`});
       }
    })
    .catch(err => {
-      res.status(500).send({message: "Could not delete Tutorial with id=" + id});
+      res.status(500).send({message: "Error: no se pudo eliminar cliente con id=" + id});
    });
 });
 
