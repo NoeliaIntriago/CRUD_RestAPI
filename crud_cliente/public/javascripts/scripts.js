@@ -32,7 +32,6 @@ const cargarClientes = () => {
 const crearCliente = () => {
 	const form = document.getElementById("newClientForm");
 	form.addEventListener('submit', function (e){
-		e.preventDefault();
 		var formData = {
 			nombre: document.getElementById("name_input").value,
 			apellido: document.getElementById("lastname_input").value,
@@ -57,11 +56,8 @@ const crearCliente = () => {
 }
 
 const actualizarCliente = (cliente) => {
-	console.log('Actualizando cliente');
-	console.log(cliente);
 	const form = document.getElementById("newClientForm");
 	form.addEventListener('submit', function (e){
-		e.preventDefault();
 		var formData = {
 			nombre: document.getElementById("name_input").value,
 			apellido: document.getElementById("lastname_input").value,
@@ -92,6 +88,10 @@ const eliminarCliente = (idCliente) => {
 	})
 	.then(response => {
 		response.json();
+	})
+	.then(data => {
+		console.log("Hola");
+		location.reload();
 	})
 	.catch(function(error) {
 		console.log("Hubo un problema con la petición Fetch: " + error.message);
